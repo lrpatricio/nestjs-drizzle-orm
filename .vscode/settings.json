@@ -1,0 +1,11 @@
+{
+    "[typescript]": {
+      "editor.codeActionsOnSave": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "source.organizeImports": true
+      }
+    },
+    "editor.formatOnSave": true,
+    "cSpell.enableFiletypes": ["javascript", "typescript"],
+    "cSpell.language": "en,pt,pt_BR"
+  }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
+import { ApplicationModule } from 'src/application/application.module';
 import ProductController from './adapters/in/api/controllers/product.controller';
-import { ApplicationModule } from 'src/applcation/application.module';
 
 @Module({
   imports: [ApplicationModule],
