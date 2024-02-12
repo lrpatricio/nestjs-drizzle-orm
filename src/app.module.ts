@@ -1,8 +1,14 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { InfraestrutureModule } from './infraestruture/infraestruture.module';
 
 @Module({
-  imports: [InfraestrutureModule],
+  imports: [
+    InfraestrutureModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
+  ],
   controllers: [],
   providers: [],
 })

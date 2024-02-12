@@ -4,6 +4,8 @@ import { ProductDeleteUseCase } from 'src/application/use-cases/product/product.
 import { ProductFindAllUseCase } from 'src/application/use-cases/product/product.findall.usecase';
 import { ProductFindByIdUseCase } from 'src/application/use-cases/product/product.findbyid.usecase';
 import { ProductUpdateUseCase } from 'src/application/use-cases/product/product.update.usecase';
+import Product from 'src/domain/models/product';
+import ProductRequest from '../requests/product.request';
 
 @Controller('products')
 export default class ProductController {
@@ -26,17 +28,17 @@ export default class ProductController {
   }
 
   @Post()
-  create(@Body() product) {
-    this.productCreateUseCase.execute(product);
+  create(@Body() product: ProductRequest) {
+    this.productCreateUseCase.execute(Object.assign(new Product(), product));
   }
 
-  @Put()
-  update(@Body() product) {
-    this.productUpdateUseCase.execute(product);
+  @Put(':id')
+  update(@Param('id') id: number, @Body() product: ProductRequest) {
+    this.productUpdateUseCase.execute(id, Object.assign(new Product(), product));
   }
 
   @Delete(':id')
-  delete(id: number) {
+  delete(@Param('id') id: number) {
     this.productDeleteUseCase.execute(id);
   }
 }

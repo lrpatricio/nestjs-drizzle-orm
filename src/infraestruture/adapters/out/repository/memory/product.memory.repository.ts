@@ -1,14 +1,15 @@
 import Product from 'src/domain/models/product';
 import ProductRepository from 'src/domain/ports/out/repository/product.repository';
 
-export default class ProductRepositoryMemory implements ProductRepository {
+export default class ProductMemoryRepository implements ProductRepository {
   private products: Product[] = [];
 
-  findAll(): Product[] {
+  async findAll(): Promise<Product[]> {
+    console.log('ProductMemoryRepository');
     return this.products;
   }
 
-  findById(id: number): Product {
+  async findById(id: number): Promise<Product> {
     return this.products.find((product) => product.id == id);
   }
 
@@ -16,8 +17,8 @@ export default class ProductRepositoryMemory implements ProductRepository {
     this.products.push(product);
   }
 
-  update(product: Product): void {
-    const index = this.products.findIndex((p) => p.id === product.id);
+  update(id: number, product: Product): void {
+    const index = this.products.findIndex((p) => p.id === id);
     this.products[index] = product;
   }
 

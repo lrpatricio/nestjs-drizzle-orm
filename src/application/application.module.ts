@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
-import ProductRepositoryMemory from 'src/infraestruture/adapters/out/repository/product.repository.memory';
+import { PRODUCT_REPOSITORY } from 'src/domain/ports/out/repository/product.repository';
+import ProductDrizzleRepository from 'src/infraestruture/adapters/out/repository/drizzle-mysql/product.drizzle.repository';
+import { drizzleProvider } from 'src/infraestruture/database/drizzle/drizzle.provider';
 import { ProductCreateUseCase } from './use-cases/product/product.create.usecase';
 import { ProductDeleteUseCase } from './use-cases/product/product.delete.usecase';
 import { ProductFindAllUseCase } from './use-cases/product/product.findall.usecase';
@@ -16,9 +18,10 @@ import { ProductUpdateUseCase } from './use-cases/product/product.update.usecase
     ProductUpdateUseCase,
     ProductDeleteUseCase,
     {
-      provide: 'ProductRepository',
-      useClass: ProductRepositoryMemory,
+      provide: PRODUCT_REPOSITORY,
+      useClass: ProductDrizzleRepository,
     },
+    ...drizzleProvider,
   ],
   exports: [
     ProductFindAllUseCase,

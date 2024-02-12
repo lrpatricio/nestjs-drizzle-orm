@@ -1,10 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import Product from 'src/domain/models/product';
-import ProductRepository from 'src/infraestruture/adapters/out/repository/product.repository.memory';
+import ProductRepository, {
+  PRODUCT_REPOSITORY,
+} from 'src/domain/ports/out/repository/product.repository';
 
 @Injectable()
 export class ProductCreateUseCase {
-  constructor(@Inject('ProductRepository') private productRepository: ProductRepository) {}
+  constructor(@Inject(PRODUCT_REPOSITORY) private productRepository: ProductRepository) {}
 
   execute(product: Product) {
     this.productRepository.create(product);
