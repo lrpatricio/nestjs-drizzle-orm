@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1707824704661,
+      "tag": "0000_fast_post",
+      "breakpoints": true
+    }
+  ]
+}
